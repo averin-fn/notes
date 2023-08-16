@@ -72,17 +72,13 @@ export function Mistake() {
 export function SoundSucc() {
   const audio = new Audio(soundSucc);
   audio.loop = false;
-  return (
-    audio.play()
-  );
+  audio.play()
 };
 
 export function SoundMist() {
   const audio = new Audio(soundMist);
   audio.loop = false;
-  return (
-    audio.play()
-  );
+  audio.play()
 };
 
 export function SoundNote(props) {

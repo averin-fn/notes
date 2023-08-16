@@ -2,7 +2,7 @@
 import './App.css';
 import { useState } from "react";
 
-import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/css/bootstrap.css';
 
 // import notes images
 import nDo from './images/do.svg';
@@ -86,13 +86,14 @@ function NoteChange() {
 
   const [lott, setLott] = useState(Tiger);
   const [pict, setPict] = useState(currentNote.pict);
-  const [sound, setSound] = useState();
   const [noteSound, setNoteSound] = useState(currentNote.sound);
+
+  let audioSource;
 
   function onClick(currentButton) {
     if (currentNote.name === currentButton.value) {
       setLott(Success);
-      setSound(SoundSucc);
+      SoundSucc();
       setTimeout(() => {
         currentNote =
           notesArr[Math.floor(Math.random() * (notesArr.length))];
@@ -102,7 +103,7 @@ function NoteChange() {
       }, 1500);
     } else {
       setLott(Mistake);
-      setSound(SoundMist);
+      SoundMist();
     }
   };
 
@@ -123,7 +124,7 @@ function NoteChange() {
 
       <div className='row'>
         <div className='col contKeyb'>
-          {buttonArr.map(button => <input key={button.key} onClick={() => onClick(button, sound)} type="image" className='img' src={button.img}></input>)}
+          {buttonArr.map(button => <input key={button.key} onClick={() => onClick(button)} type="image" className='img' src={button.img}></input>)}
         </div>
       </div>
 
