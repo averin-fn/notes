@@ -1,38 +1,75 @@
-.App {
-  text-align: center;
+.cont {
+
+  background-color: rgb(230, 212, 178);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.contTiger {
+  height: 30vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+div.contNote {
+  height: 48vh;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.contKeyb {
+  background-color: black;
+  height: 22vh;
+  align-items: baseline;
+}
+
+
+.pictNote {
+max-height: 355px;
+
+}
+
+.img {
+  height: 100%;
+}
+
+/*
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  background-color: rgb(230, 212, 178);
+  flex-direction: column;
+  flex-wrap: nowrap
 }
 
-.App-link {
-  color: #61dafb;
+.contTiger {
+  display: flex;
+  align-self: center;
+  width: 100vh;
+  height: 30vh;
+ background-color: rgb(225, 174, 78);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.contNote {
+  display: flex;
+  align-self: center;
+  width: 100vh;
+  height: 50vh;
+  background-color: rgb(116, 80, 14);
 }
+
+.pictNote {
+  width: 40vh;
+  height: 30vh;
+
+}
+
+
+.contKeyb {
+  display: flex;
+  align-self: center;
+  background-color: black;
+  width: 100vh;
+  height: 20vh;
+
+}
+
+.img {
+  width: 10vh;
+  height: 15vh;
+  flex-shrink: 3;
+}*/
