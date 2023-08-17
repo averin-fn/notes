@@ -38,9 +38,9 @@ import { Success } from './Media.js';
 import { Mistake } from './Media.js';
 
 // import sounds components
-import { SoundSucc } from './Media.js';
-import { SoundMist } from './Media.js';
-import { SoundNote } from './Media.js';
+import { soundSuccFn } from './Media.js';
+import { soundMistFn } from './Media.js';
+
 
 class Note {
   constructor(n, s, p) {
@@ -50,16 +50,16 @@ class Note {
   }
 };
 
-const notesArr = [
-  new Note("do", SoundNote(do1), nDo),
-  new Note("re", SoundNote(re1), nRe),
-  new Note("mi", SoundNote(mi1), nMi),
-  new Note("fa", SoundNote(fa1), nFa),
-  new Note("sol", SoundNote(sol1), nSol),
-  new Note("la", SoundNote(la1), nLa),
-  new Note("si", SoundNote(si1), nSi)
-];
 
+const notesArr = [
+  new Note("do", do1, nDo),
+  new Note("re", re1, nRe),
+  new Note("mi", mi1, nMi),
+  new Note("fa", fa1, nFa),
+  new Note("sol",sol1, nSol),
+  new Note("la", la1, nLa),
+  new Note("si", si1, nSi)
+];
 
 class Button {
   constructor(key, value, img) {
@@ -81,36 +81,32 @@ const buttonArr = [
 
 let currentNote = notesArr[Math.floor(Math.random() * (notesArr.length))];
 
-
 function NoteChange() {
-
   const [lott, setLott] = useState(Tiger);
   const [pict, setPict] = useState(currentNote.pict);
-  const [noteSound, setNoteSound] = useState(currentNote.sound);
-
-  let audioSource;
+ 
 
   function onClick(currentButton) {
     if (currentNote.name === currentButton.value) {
       setLott(Success);
-      SoundSucc();
+      soundSuccFn();
       setTimeout(() => {
         currentNote =
           notesArr[Math.floor(Math.random() * (notesArr.length))];
         setLott(Tiger);
         setPict(currentNote.pict);
-        setNoteSound(currentNote.sound);
+     const keySound = new Audio(currentNote.sound);
+     keySound.play();
       }, 1500);
     } else {
       setLott(Mistake);
-      SoundMist();
+      soundMistFn();
     }
   };
 
   return (
     <div className="container text-center cont">
       <div className='row'>
-        {noteSound}
         <div className="col contTiger">
           {lott}
         </div>

@@ -69,24 +69,16 @@ export function Mistake() {
 
 // sounds
 
-export function SoundSucc() {
+export function soundSuccFn() {
   const audio = new Audio(soundSucc);
   audio.loop = false;
   audio.play()
 };
 
-export function SoundMist() {
+export function soundMistFn() {
   const audio = new Audio(soundMist);
   audio.loop = false;
   audio.play()
 };
 
-export function SoundNote(props) {
-  const audio = new Audio(props);
-  audio.loop = false;
-  audio.autoplay = true;
-  return (
-    audio.load()
-  );
-};
 
