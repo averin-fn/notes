@@ -50,8 +50,7 @@ class Note {
   }
 };
 
-
-const notesArr = [
+const firstOctave = [
   new Note("do", do1, nDo),
   new Note("re", re1, nRe),
   new Note("mi", mi1, nMi),
@@ -60,6 +59,8 @@ const notesArr = [
   new Note("la", la1, nLa),
   new Note("si", si1, nSi)
 ];
+
+let notesArr;
 
 class Button {
   constructor(key, value, img) {
@@ -79,13 +80,36 @@ const buttonArr = [
   new Button(7, "si", kSi)
 ];
 
-let currentNote = notesArr[Math.floor(Math.random() * (notesArr.length))];
 
-function NoteChange() {
-  const [lott, setLott] = useState(Tiger);
-  const [pict, setPict] = useState(currentNote.pict);
+export function OctaveSelect() {
+  const octChanged = false;
+  function change1(){
+notesArr = firstOctave;
+octChanged = true;
+  };
+  if (octChanged){
+    return (
+      <div className="container text-center cont">
+    <button onClick = {change1}>1 октава</button>
+    <button>2 октава</button>
+    <button>малая</button>
+    <button>большая</button>
+    <button>все октавы</button>
+    </div>
+    )
+  }
+  return <NoteChange />
+  }; 
  
 
+
+
+  export function NoteChange() {
+
+    let currentNote = notesArr[Math.floor(Math.random() * (notesArr.length))];
+
+  const [lott, setLott] = useState(Tiger);
+  const [pict, setPict] = useState (currentNote.pict);
   function onClick(currentButton) {
     if (currentNote.name === currentButton.value) {
       setLott(Success);
@@ -128,7 +152,8 @@ function NoteChange() {
   );
 };
 
-export default NoteChange;
+
+
 
 
 
