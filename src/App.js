@@ -1,18 +1,12 @@
-import './App.css';
-/*import { useState } from "react";*/
-import Notes from './Notes.js';
-import { OctaveSelect } from './Notes.js';
-import { NoteChange } from  './Notes.js';
-
+import "./App.css";
+import { OctaveSelect } from "./components/OctaveSelect.js";
 
 function App() {
   return (
-    <div >
+    <div>
       <OctaveSelect />
-    
-    </div >
-  )
-
+    </div>
+  );
 }
 
 export default App;
