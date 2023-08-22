@@ -1,4 +1,4 @@
-// import notes images
+// картинки нот и звуки нот
 import { noteImg, noteSound } from "./imports";
 
 export class Note {
@@ -9,6 +9,7 @@ export class Note {
   }
 }
 
+/*первая октава */
 export const firstOctave = [
   new Note("do", noteSound.do1, noteImg.nDo),
   new Note("re", noteSound.re1, noteImg.nRe),

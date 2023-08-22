@@ -1,3 +1,4 @@
+//картинки  клавиш
 import { keys } from './imports';
 
 class Button {
@@ -8,6 +9,7 @@ class Button {
     }
   }
   
+  /*клавиатура*/
   export const buttonArr = [
     new Button(1, "do", keys.kDo),
     new Button(2, "re", keys.kRe),
