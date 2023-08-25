@@ -1,20 +1,37 @@
+import { useState } from "react";
+import { game } from "../game.js";
+import { ButtonRestart } from "./ButtonRestart.js";
 
-let result = 0;
+let score = 0;
+let button = <ButtonRestart />;
 
-export function Score({ score, attempt }) {
-    console.log(attempt);
-    if (attempt === 0) {
-        result = ("твой результат" + score);
-        score = 0;
-        attempt = 3;
-        
-    } else {
-        result = score
+export function Score({ result }) {
+
+console.log(game.attempt);
+    if (result === "success") {
+        game.score++;
+        score = game.score;
     }
-    return (
+    else if (game.attempt <= 0) {
+    score = button;
+    game.bestResult = game.score;
+    game.attempt = 3;
+    game.score = 0;
+    }
+    else if (result === "current") {
+        score = game.score;
+    }
+    else if (result === "mistake" && game.attempt >= 0){
+        score = "mistake";
+        --game.attempt;
+        }
 
-        <p>{result}</p>
-    )
+    return (
+        <p>{score}</p>
+    );
 };
+   
+
+
 
 

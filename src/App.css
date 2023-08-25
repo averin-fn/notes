@@ -4,11 +4,11 @@
 }
 
 .contTiger {
-  height: 30vh;
+  height: 25vh;
 }
 
 div.contNote {
-  height: 48vh;
+  height: 30vh;
 }
 
 .contKeyb {
@@ -19,7 +19,7 @@ div.contNote {
 
 
 .pictNote {
-max-height: 355px;
+max-height: 220px;
 
 }
 
@@ -27,49 +27,9 @@ max-height: 355px;
   height: 100%;
 }
 
-/*
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(230, 212, 178);
-  flex-direction: column;
-  flex-wrap: nowrap
+.score {
+  height: 10vh;
 }
-
-.contTiger {
-  display: flex;
-  align-self: center;
-  width: 100vh;
-  height: 30vh;
- background-color: rgb(225, 174, 78);
-}
-
-.contNote {
-  display: flex;
-  align-self: center;
-  width: 100vh;
-  height: 50vh;
-  background-color: rgb(116, 80, 14);
-}
-
-.pictNote {
-  width: 40vh;
-  height: 30vh;
-
-}
-
-
-.contKeyb {
-  display: flex;
-  align-self: center;
-  background-color: black;
-  width: 100vh;
-  height: 20vh;
-
-}
-
-.img {
-  width: 10vh;
+.octaves {
   height: 15vh;
-  flex-shrink: 3;
-}*/
+}

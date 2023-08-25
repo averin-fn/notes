@@ -17,8 +17,7 @@ export function NoteChange({ notesArr }) {
   );
   const [lott, setLott] = useState();
   const [pict, setPict] = useState(currentNote.pict);
-  let [scr, setScr] = useState(0);
-  let [att, setAtt] = useState(3);
+  const [scr, setScr] = useState(0);
 
   if (firstNote) {
     const keySound = new Audio(currentNote.sound);
@@ -28,8 +27,8 @@ export function NoteChange({ notesArr }) {
 
   function onClick(currentButton) {
     if (currentNote.name === currentButton.value) {
-      setScr(scr + 1);
       setLott("success");
+      setScr("success");
       const soundSucc = new Audio(resultSound.succ);
       soundSucc.play();
       setTimeout(() => {
@@ -37,29 +36,28 @@ export function NoteChange({ notesArr }) {
           notesArr[Math.floor(Math.random() * notesArr.length)];
         setCurrentNote(newCurrentNote);
         setLott();
+        setScr("current");
         setPict(newCurrentNote.pict);
         const keySound = new Audio(newCurrentNote.sound);
         keySound.play();
       }, 1000);
-    } else {
-      setAtt(att - 1);
+    }
+    else {
       setLott("mistake");
-      
-
-      /*console.log(att);*/
-
+      setScr("mistake");
       const soundMist = new Audio(resultSound.mist);
       soundMist.play();
     }
   }
-
   return (
     <div className="container text-center cont">
       <div className="row">
         <div className="col contTiger">
           <Animation type={lott} />
         </div>
-        <Score attempt={att} score={scr}  />
+        <p className = "score h1">
+        <Score result={scr} />
+        </p>
       </div>
 
       <div className="row contNote">
