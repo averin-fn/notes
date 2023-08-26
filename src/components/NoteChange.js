@@ -12,9 +12,12 @@ import { Score } from "./Score";
 let firstNote = true;
 
 export function NoteChange({ notesArr }) {
-  const [currentNote, setCurrentNote] = useState(
-    notesArr[Math.floor(Math.random() * notesArr.length)]
-  );
+  /** Функция получения индекса ноты */
+  function getNoteIndex() {
+    return notesArr[Math.floor(Math.random() * notesArr.length)];
+  }
+
+  const [currentNote, setCurrentNote] = useState(getNoteIndex());
   const [lott, setLott] = useState();
   const [pict, setPict] = useState(currentNote.pict);
   const [scr, setScr] = useState(0);
@@ -32,8 +35,7 @@ export function NoteChange({ notesArr }) {
       const soundSucc = new Audio(resultSound.succ);
       soundSucc.play();
       setTimeout(() => {
-        const newCurrentNote =
-          notesArr[Math.floor(Math.random() * notesArr.length)];
+        const newCurrentNote = getNoteIndex();
         setCurrentNote(newCurrentNote);
         setLott();
         setScr("current");
@@ -41,10 +43,15 @@ export function NoteChange({ notesArr }) {
         const keySound = new Audio(newCurrentNote.sound);
         keySound.play();
       }, 1000);
-    }
-    else {
+    } else {
       setLott("mistake");
       setScr("mistake");
+
+      setTimeout(() => {
+        setLott();
+        setScr("current"); 
+      }, 1000);
+
       const soundMist = new Audio(resultSound.mist);
       soundMist.play();
     }
@@ -55,8 +62,8 @@ export function NoteChange({ notesArr }) {
         <div className="col contTiger">
           <Animation type={lott} />
         </div>
-        <p className = "score h1">
-        <Score result={scr} />
+        <p className="score h1">
+          <Score result={scr} />
         </p>
       </div>
 
