@@ -33,3 +33,14 @@ max-height: 220px;
 .octaves {
   height: 15vh;
 }
+
+.imgFrame {
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.row > .imgFrame {
+  width: fit-content;
+  height: fit-content;
+}

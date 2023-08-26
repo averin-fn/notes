@@ -49,7 +49,7 @@ export function NoteChange({ notesArr }) {
 
       setTimeout(() => {
         setLott();
-        setScr("current"); 
+        setScr("current");
       }, 1000);
 
       const soundMist = new Audio(resultSound.mist);
@@ -67,10 +67,10 @@ export function NoteChange({ notesArr }) {
         </p>
       </div>
 
-      <div className="row contNote">
-        <div className="col">
-          <img className="img-fluid pictNote" src={pict}></img>
-        </div>
+      <div className="row contNote justify-content-center">
+          <div className="imgFrame">
+            <img className="img-fluid pictNote" src={pict}></img>
+          </div>
       </div>
 
       <div className="row">
