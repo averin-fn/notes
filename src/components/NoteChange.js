@@ -1,6 +1,7 @@
 import "../App.css";
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
+import { game } from "../game.js";
 
 import { buttonArr } from "../keyboard";
 
@@ -8,6 +9,7 @@ import { buttonArr } from "../keyboard";
 import { Animation } from "./Animation.js";
 import { resultSound } from "../imports.js";
 import { Score } from "./Score";
+import { ButtonRestart } from "./ButtonRestart";
 
 let firstNote = true;
 
@@ -21,6 +23,7 @@ export function NoteChange({ notesArr }) {
   const [lott, setLott] = useState();
   const [pict, setPict] = useState(currentNote.pict);
   const [scr, setScr] = useState(0);
+  const [showButton, setShowButton] = useState(false);
 
   if (firstNote) {
     const keySound = new Audio(currentNote.sound);
@@ -29,6 +32,8 @@ export function NoteChange({ notesArr }) {
   }
 
   function onClick(currentButton) {
+    setShowButton(false);
+
     if (currentNote.name === currentButton.value) {
       setLott("success");
       setScr("success");
@@ -47,34 +52,49 @@ export function NoteChange({ notesArr }) {
       setLott("mistake");
       setScr("mistake");
 
-      setTimeout(() => {
-        setLott();
-        setScr("current");
-      }, 1000);
+      if (game.attempt > 1) {
+        setTimeout(() => {
+          setLott();
+          setScr("current");
+        }, 1000);
+      } else {
+        setShowButton(true);
+      }
 
       const soundMist = new Audio(resultSound.mist);
       soundMist.play();
     }
   }
   return (
-    <div className="container text-center cont">
+    <div className="container-fluid note-container">
       <div className="row">
-        <div className="col contTiger">
-          <Animation type={lott} />
+        <div className="col-6 score-container">
+          <p className="score h3">
+            Счёт: <Score result={scr} />
+          </p>
         </div>
-        <p className="score h1">
-          <Score result={scr} />
-        </p>
-      </div>
-
-      <div className="row contNote justify-content-center">
-          <div className="imgFrame">
-            <img className="img-fluid pictNote" src={pict}></img>
-          </div>
+        <div className="col-6 attempts-container">
+          <p className="score h3">
+            Попыток: { game.attempt }
+          </p>
+        </div>
       </div>
 
       <div className="row">
-        <div className="col contKeyb">
+        <div className="col tiger-container">
+          {!showButton && <Animation type={lott} /> }
+          {showButton && <ButtonRestart />}
+        </div>
+      </div>
+
+      <div className="row note-img-container justify-content-center">
+        <div className="imgFrame">
+          <img className="img-fluid pictNote" src={pict}></img>
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col keyboard-container justify-content-center align-self-stretch">
           {buttonArr.map((button) => (
             <input
               key={button.key}

@@ -3,6 +3,6 @@ import { game } from "../game.js";
 
 export function ButtonRestart() {
     return (
-        <button>еще раз?</button>
+        <button type="button" className="btn btn-primary">еще раз?</button>
     )
 };

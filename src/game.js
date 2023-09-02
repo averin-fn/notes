@@ -3,7 +3,7 @@ class Game {
     score = 0;
     attempt= 3;
     bestResult = 0;
-
+    
     restart() {
         this.bestResult = this.score;
 

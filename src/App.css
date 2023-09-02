@@ -1,37 +1,54 @@
-.cont {
-
+.note-container {
   background-color: rgb(230, 212, 178);
+  height: calc(100vh - 5px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
 }
 
-.contTiger {
-  height: 25vh;
+.menu-container {
+  background-color: rgb(230, 212, 178);
+  height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
-div.contNote {
-  height: 30vh;
+.attempts-container {
+  text-align: end;
 }
 
-.contKeyb {
+.attempts-container .score {
+  padding: 10px;
+}
+
+.score-container .score {
+  padding: 10px;
+}
+
+.tiger-container {
+  margin: 15px;
+  text-align: center;
+}
+
+div.note-img-container {
+  margin: 15px;
+}
+
+.keyboard-container {
   background-color: black;
   height: 22vh;
   align-items: baseline;
+  text-align: center;
 }
 
-
 .pictNote {
-max-height: 220px;
-
+  max-height: 220px;
 }
 
 .img {
   height: 100%;
-}
-
-.score {
-  height: 10vh;
-}
-.octaves {
-  height: 15vh;
 }
 
 .imgFrame {
@@ -43,4 +60,8 @@ max-height: 220px;
 .row > .imgFrame {
   width: fit-content;
   height: fit-content;
+}
+
+button.btn {
+  padding: 15px;
 }
