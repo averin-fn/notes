@@ -2,7 +2,7 @@ import "../App.css";
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { NoteChange } from "./NoteChange.js";
-import { firstOctave } from "../notes.js";
+import { firstOctave } from "../note.js";
 
 const buttons = [
   {
