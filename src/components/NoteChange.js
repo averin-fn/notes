@@ -1,15 +1,12 @@
 import "../App.css";
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import { game } from "../game.js";
 
 import { buttonArr } from "../keyboard";
 
 // import lottie components
 import { Animation } from "./Animation.js";
 import { resultSound } from "../imports.js";
-import { Score } from "./Score";
-import { ButtonRestart } from "./ButtonRestart";
 
 let firstNote = true;
 
@@ -19,89 +16,100 @@ export function NoteChange({ notesArr }) {
     return notesArr[Math.floor(Math.random() * notesArr.length)];
   }
 
-  const [currentNote, setCurrentNote] = useState(getNoteIndex());
-  const [lott, setLott] = useState();
-  const [pict, setPict] = useState(currentNote.pict);
-  const [scr, setScr] = useState(0);
-  const [showButton, setShowButton] = useState(false);
+  const defaultNote = getNoteIndex();
+
+  const defaultContext = {
+    currentNote: defaultNote,
+    lott: null,
+    pict: defaultNote.pict,
+    scr: 0,
+    attempt: 3,
+    showButton: false,
+    buttonDisabled: false
+  }
+
+  const [context, setContext] = useState(defaultContext);
 
   if (firstNote) {
-    const keySound = new Audio(currentNote.sound);
+    const keySound = new Audio(context.currentNote.sound);
     keySound.play();
     firstNote = false;
   }
 
   function onClick(currentButton) {
-    setShowButton(false);
+    setContext({ ...context, ...{ showButton: true } });
 
-    if (currentNote.name === currentButton.value) {
-      setLott("success");
-      setScr("success");
+    if (context.currentNote.name === currentButton.value) {
+      setContext({ ...context, ...{ lott: 'success', scr: ++context.scr, buttonDisabled: true } });
       const soundSucc = new Audio(resultSound.succ);
       soundSucc.play();
       setTimeout(() => {
         const newCurrentNote = getNoteIndex();
-        setCurrentNote(newCurrentNote);
-        setLott();
-        setScr("current");
-        setPict(newCurrentNote.pict);
+
+        setContext({ ...context, ...{ currentNote: newCurrentNote, lott: null, pict: newCurrentNote.pict, buttonDisabled: false } });
+
         const keySound = new Audio(newCurrentNote.sound);
         keySound.play();
       }, 1000);
     } else {
-      setLott("mistake");
-      setScr("mistake");
+      setContext({ ...context, ...{ lott: 'mistake', attempt: --context.attempt, buttonDisabled: true } });
 
-      if (game.attempt > 1) {
+      if (context.attempt > 0) {
         setTimeout(() => {
-          setLott();
-          setScr("current");
+          setContext({ ...context, ...{ lott: null, buttonDisabled: false } });
         }, 1000);
       } else {
-        setShowButton(true);
+        setContext({ ...context, ...{ showButton: true } });
       }
 
       const soundMist = new Audio(resultSound.mist);
       soundMist.play();
     }
   }
+
+  function restart() {
+    setContext(defaultContext);
+  }
+
   return (
     <div className="container-fluid note-container">
       <div className="row">
         <div className="col-6 score-container">
           <p className="score h3">
-            Счёт: <Score result={scr} />
+            Счёт: {context.scr}
           </p>
         </div>
         <div className="col-6 attempts-container">
           <p className="score h3">
-            Попыток: { game.attempt }
+            Попыток: {context.attempt}
           </p>
         </div>
       </div>
 
       <div className="row">
         <div className="col tiger-container">
-          {!showButton && <Animation type={lott} /> }
-          {showButton && <ButtonRestart />}
+          {!context.showButton && <Animation type={context.lott} />}
+          {context.showButton && <button type="button" className="btn btn-primary" onClick={() => restart()}>еще раз?</button>}
         </div>
       </div>
 
       <div className="row note-img-container justify-content-center">
         <div className="imgFrame">
-          <img className="img-fluid pictNote" src={pict}></img>
+          <img className="img-fluid pictNote" src={context.pict} alt="img"></img>
         </div>
       </div>
 
       <div className="row">
         <div className="col keyboard-container justify-content-center align-self-stretch">
-          {buttonArr.map((button) => (
+          {!context.showButton && buttonArr.map((button) => (
             <input
               key={button.key}
               onClick={() => onClick(button)}
               type="image"
               className="img"
               src={button.img}
+              disabled={context.buttonDisabled}
+              alt="button"
             ></input>
           ))}
         </div>
