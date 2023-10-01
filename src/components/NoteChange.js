@@ -68,6 +68,7 @@ export function NoteChange({ notesArr }) {
   }
 
   function restart() {
+    firstNote = true;
     setContext(defaultContext);
   }
 
