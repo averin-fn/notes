@@ -3,6 +3,9 @@ import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { NoteChange } from "./NoteChange.js";
 import { firstOctave } from "../note.js";
+import { secondOctave } from "../note.js";
+import { smallOctave } from "../note.js";
+import { bigOctave } from "../note.js";
 
 const buttons = [
   {
@@ -13,19 +16,18 @@ const buttons = [
   {
     label: "2 октава",
     state: "second",
+    octave: secondOctave
   },
   {
-    label: "3 октава",
+    label: "малая октава",
     state: "third",
+    octave: smallOctave
   },
   {
-    label: "4 октава",
+    label: "большая октава",
     state: "fourth",
-  },
-  {
-    label: "5 октава",
-    state: "fivth",
-  },
+    octave: bigOctave
+  }
 ];
 
 export function OctaveSelect() {
