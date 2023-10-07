@@ -22,10 +22,10 @@ export const firstOctave = [
 
 /*вторая октава */
 export const secondOctave = [
-  /*new Note("do", noteSound.do2, noteImg.nDo2),
+  new Note("do", noteSound.do2, noteImg.nDo2),
   new Note("re", noteSound.re2, noteImg.nRe2),
   new Note("mi", noteSound.mi2, noteImg.nMi2),
-  new Note("fa", noteSound.fa2, noteImg.nFa2),*/
+  new Note("fa", noteSound.fa2, noteImg.nFa2),
   new Note("sol", noteSound.sol2, noteImg.nSol2),
   new Note("la", noteSound.la2, noteImg.nLa2),
   new Note("si", noteSound.si2, noteImg.nSi2),

@@ -7,10 +7,10 @@ import nSol from "./images/sol.svg";
 import nLa from "./images/la.svg";
 import nSi from "./images/si.svg";
 
-/*import nDo2 from "./images/do2.svg";
+import nDo2 from "./images/do2.svg";
 import nRe2 from "./images/re2.svg";
 import nMi2 from "./images/mi2.svg";
-import nFa2 from "./images/fa2.svg";*/
+import nFa2 from "./images/fa2.svg";
 import nSol2 from "./images/sol2.svg";
 import nLa2 from "./images/la2.svg";
 import nSi2 from "./images/si2.svg";
@@ -81,7 +81,7 @@ import mist from "./audio/soundMist.mp3";
 
 /*картинки нот*/
 export const noteImg = { nDo, nRe, nMi, nFa, nSol, nLa, nSi,
-    /*nDo2, nRe2, nMi2, nFa2,*/ nSol2, nLa2, nSi2,
+    nDo2, nRe2, nMi2, nFa2, nSol2, nLa2, nSi2,
     nDo_1, nRe_1, nMi_1, nFa_1, nSol_1, nLa_1, nSi_1,
     nDo_2, nRe_2, nMi_2, nFa_2, nSol_2, nLa_2, nSi_2
   };
